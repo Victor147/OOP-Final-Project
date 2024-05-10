@@ -1,2 +1,15 @@
 ﻿  Menu.cpp
-  oop_final_project.vcxproj -> C:\Victor\University\First year\Second semester\OOP\oop_final_project\x64\Debug\oop_final_project.exe
+  oop_final_project.cpp
+  Property.cpp
+  SVGParser.cpp
+  Generating Code...
+C:\Victor\University\First year\Second semester\OOP\oop_final_project\Figure.h(8,14): error C2955: 'Property': use of class template requires template argument list
+  (compiling source file 'SVGParser.cpp')
+  C:\Victor\University\First year\Second semester\OOP\oop_final_project\Property.h(5,1):
+  see declaration of 'Property'
+  
+C:\Victor\University\First year\Second semester\OOP\oop_final_project\Figure.h(8,7): error C2976: 'std::vector': too few template arguments
+  (compiling source file 'SVGParser.cpp')
+  C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\vector(436,1):
+  see declaration of 'std::vector'
+  
