@@ -1,8 +1,9 @@
-#include "Menu.h"
 #include <iostream>
 #include <string>
 #include <sstream>
 #include <fstream>
+#include "SVGParser.h"
+#include "Menu.h"
 
 void Menu::printHelp() {
 	std::cout << "Available commands in this SVG editor:\n"
@@ -16,6 +17,9 @@ void Menu::printHelp() {
 }
 
 void Menu::handleInput() {
+	bool isOpened = false;
+	SVGParser svg;
+
 	while (true)
 	{
 		std::string choice, command;
@@ -24,7 +28,7 @@ void Menu::handleInput() {
 		std::stringstream ss(choice);
 		ss >> command;
 
-		if (command == "open")
+		if (command == "open" && !isOpened)
 		{
 			std::string path = choice.substr(choice.find(" ") + 1, choice.size());
 
@@ -32,13 +36,17 @@ void Menu::handleInput() {
 			if (!file)
 			{
 				std::cout << "File not found!\n";
-				continue;
+				//continue;
 			}
 			else {
 				//TODO: Print the name of the file rather than just text!
 				std::cout << "Successfully opened the file!\n";
+				isOpened = true;
+				svg.setFile(&file);
+				svg.print();
 			}
 		}
+		//TODO: if when a file is open, to prompt the user if he wants to save the current file before opening a new one
 		else if (command == "help")
 		{
 			printHelp();
@@ -49,8 +57,26 @@ void Menu::handleInput() {
 		}
 		else if (command == "close" || command == "save" || command == "saveas")
 		{
-			std::cout << "You need to open a file first!\n";
+			if (!isOpened)
+			{
+				std::cout << "You need to open a file first!\n";
+			}
+			else {
+				if (command == "close")
+				{
+
+				}
+				else if (command == "save")
+				{
+
+				}
+				else if (command == "saveas")
+				{
+
+				}
+			}
 		}
+		
 		else {
 			std::cout << "Invalid command!\n";
 		}

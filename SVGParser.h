@@ -1,14 +1,19 @@
 #pragma once
 #include <string>
 #include <vector>
+#include <fstream>
 #include "Figure.h"
 
 class SVGParser {
 private:
-	std::string fileName;
+	std::ifstream* file;
 	std::vector<Figure*> figures;
 
-	void loadFigures();
+	void loadVector();
 public:
-	SVGParser(std::string _fileName);
+	SVGParser();
+	SVGParser(std::ifstream* _file);
+	void setFile(std::ifstream* _file);
+
+	void print();
 };
