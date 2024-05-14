@@ -1,8 +1,8 @@
 #include <iostream>
 #include "Circle.h"
 
-Circle::Circle() : x(0), y(0), r(0) {}
-Circle::Circle(double _x, double _y, double _r, std::vector<Property>& _properties) : x(_x), y(_y), r(_r)
+Circle::Circle() : c(0,0), r(0) {}
+Circle::Circle(double _x, double _y, double _r, std::vector<Property>& _properties) : c(_x, _y), r(_r)
 {
 	for (Property p : _properties)
 	{
@@ -10,8 +10,8 @@ Circle::Circle(double _x, double _y, double _r, std::vector<Property>& _properti
 	}
 }
 
-void Circle::print() const {
-	std::cout << "circle " << x << " " << y << " " << r;
+void Circle::print(size_t ind) const {
+	std::cout << ind << ". circle " << c.getX() << " " << c.getY() << " " << r;
 
 	for (Property p : properties) {
 		p.print();

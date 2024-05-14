@@ -7,7 +7,7 @@ class Figure {
 public:
 	std::vector<Property> properties;
 
-	virtual void print() const = 0;
+	virtual void print(size_t ind) const = 0;
 	//virtual void create() = 0;
 	virtual void translate(size_t ind = -1) = 0;
 	virtual void within() const = 0;

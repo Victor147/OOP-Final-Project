@@ -128,17 +128,27 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Circle.cpp" />
+    <ClCompile Include="Ellipse.cpp" />
     <ClCompile Include="Figure.cpp" />
+    <ClCompile Include="Line.cpp" />
     <ClCompile Include="Menu.cpp" />
     <ClCompile Include="oop_final_project.cpp" />
+    <ClCompile Include="Point.cpp" />
+    <ClCompile Include="Polygon.cpp" />
+    <ClCompile Include="Polyline.cpp" />
     <ClCompile Include="Property.cpp" />
     <ClCompile Include="Rectangle.cpp" />
     <ClCompile Include="SVGParser.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Circle.h" />
+    <ClInclude Include="Ellipse.h" />
     <ClInclude Include="Figure.h" />
+    <ClInclude Include="Line.h" />
     <ClInclude Include="Menu.h" />
+    <ClInclude Include="Point.h" />
+    <ClInclude Include="Polygon.h" />
+    <ClInclude Include="Polyline.h" />
     <ClInclude Include="Property.h" />
     <ClInclude Include="Rectangle.h" />
     <ClInclude Include="SVGParser.h" />

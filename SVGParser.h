@@ -16,4 +16,5 @@ public:
 	void setFile(std::ifstream* _file);
 
 	void print();
+	void erase(size_t ind = -1);
 };

@@ -1,8 +1,2 @@
-﻿  Circle.cpp
-  Figure.cpp
-  Rectangle.cpp
-  SVGParser.cpp
-C:\Victor\University\First year\Second semester\OOP\oop_final_project\SVGParser.cpp(47,20): warning C4129: '/': unrecognized character escape sequence
-  Generating Code...
-C:\Victor\University\First year\Second semester\OOP\oop_final_project\Figure.cpp(61): warning C4715: 'Figure::createFigure': not all control paths return a value
+﻿  Polygon.cpp
   oop_final_project.vcxproj -> C:\Victor\University\First year\Second semester\OOP\oop_final_project\x64\Debug\oop_final_project.exe
