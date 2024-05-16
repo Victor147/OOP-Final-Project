@@ -46,8 +46,8 @@ void Menu::handleInput() {
 				svg.print();
 				svg.erase(2);
 				svg.print();
-				svg.erase();
-				svg.print();
+				//svg.erase();
+				//svg.print();
 			}
 		}
 		//TODO: if when a file is open, to prompt the user if he wants to save the current file before opening a new one

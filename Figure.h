@@ -7,11 +7,10 @@ class Figure {
 public:
 	std::vector<Property> properties;
 
-	virtual void print(size_t ind) const = 0;
-	//virtual void create() = 0;
-	virtual void translate(size_t ind = -1) = 0;
+	virtual void print(size_t ind) const = 0;/*ok*/
+	virtual void translate(double horizontal, double vertical) = 0;/*ok*/
 	virtual void within() const = 0;
-	virtual void loadFigure(/*???*/) = 0;
+	//virtual void loadFigure(/*???*/) = 0;
 
 	static Figure* createFigure(std::string& type, std::vector<Property>& properties);
 };

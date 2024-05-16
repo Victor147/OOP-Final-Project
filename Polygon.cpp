@@ -28,14 +28,12 @@ void Polygon::print(size_t ind) const {
 	std::cout << std::endl;
 }
 
-void Polygon::translate(size_t ind) {
-
+void Polygon::translate(double horizontal, double vertical) {
+	for (Point& p : points) {
+		p.translate(horizontal, vertical);
+	}
 }
 
 void Polygon::within() const {
-
-}
-
-void Polygon::loadFigure() {
 
 }

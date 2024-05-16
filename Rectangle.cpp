@@ -22,14 +22,10 @@ void Rectangle::print(size_t ind) const {
 	std::cout << std::endl;
 }
 
-void Rectangle::translate(size_t ind) {
-
+void Rectangle::translate(double horizontal, double vertical){
+	p.translate(horizontal, vertical);
 }
 
 void Rectangle::within() const {
-
-}
-
-void Rectangle::loadFigure() {
 
 }

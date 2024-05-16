@@ -1,6 +1,6 @@
 #pragma once
-#include "Figure.h"
 #include "Point.h"
+#include "Figure.h"
 
 class Polygon : public Figure {
 private:
@@ -11,8 +11,6 @@ public:
 	Polygon(std::vector<Point>& _points, std::vector<Property>& _properties);
 
 	void print(size_t ind) const;
-	//void create();
-	void translate(size_t ind = -1);
+	void translate(double horizontal, double vertical);
 	void within() const;
-	void loadFigure(/*???*/);
 };

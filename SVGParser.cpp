@@ -6,16 +6,16 @@
 #include "Figure.h"
 
 SVGParser::SVGParser() {
-	file = nullptr;
+	//file = nullptr;
 }
 
-SVGParser::SVGParser(std::ifstream* _file) : file(_file) {
-	loadVector();
+SVGParser::SVGParser(std::ifstream* _file) {
+	loadVector(_file);
 }
 
 void SVGParser::setFile(std::ifstream* _file) {
-	file = _file;
-	loadVector();
+	//file = _file;
+	loadVector(_file);
 }
 
 void SVGParser::print() {
@@ -43,7 +43,31 @@ void SVGParser::erase(size_t ind){
 	}
 }
 
-void SVGParser::loadVector() {
+void SVGParser::translate(double horizontal, double vertical, size_t ind) {
+	if (ind == -1)
+	{
+		for (Figure* f : figures)
+		{
+			f->translate(horizontal, vertical);
+		}
+
+		std::cout << "Translated all figures!" << std::endl;
+	}
+	else {
+		ind -= 1;
+		if (ind < 0 || ind >= figures.size())
+		{
+			std::cout << "There is no figure number " << ind << "!" << std::endl;
+		}
+		else {
+			figures[ind]->translate(horizontal, vertical);
+			//TODO: print the figure that was translated
+			std::cout << "Translated a figure! (" << ++ind << ")" << std::endl;
+		}
+	}
+}
+
+void SVGParser::loadVector(std::ifstream* file) {
 	std::string str, result = "";
 	bool flag = false;
 

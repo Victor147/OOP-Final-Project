@@ -11,8 +11,6 @@ public:
 	Line(double _x1, double _y1, double _x2, double _y2, std::vector<Property>& _properties);
 
 	void print(size_t ind) const;
-	//void create();
-	void translate(size_t ind = -1);
+	void translate(double horizontal, double vertical);
 	void within() const;
-	void loadFigure(/*???*/);
 };

@@ -20,14 +20,10 @@ void Circle::print(size_t ind) const {
 	std::cout << std::endl;
 }
 
-void Circle::translate(size_t ind) {
-
+void Circle::translate(double horizontal, double vertical) {
+	c.translate(horizontal, vertical);
 }
 
 void Circle::within() const {
-
-}
-
-void Circle::loadFigure() {
 
 }

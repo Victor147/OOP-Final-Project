@@ -18,14 +18,10 @@ void Ellipse::print(size_t ind) const {
 	std::cout << std::endl;
 }
 
-void Ellipse::translate(size_t ind) {
-
+void Ellipse::translate(double horizontal, double vertical) {
+	c.translate(horizontal, vertical);
 }
 
 void Ellipse::within() const {
-
-}
-
-void Ellipse::loadFigure() {
 
 }

@@ -21,14 +21,11 @@ void Line::print(size_t ind) const {
 	std::cout << std::endl;
 }
 
-void Line::translate(size_t ind) {
-
+void Line::translate(double horizontal, double vertical) {
+	p1.translate(horizontal, vertical);
+	p2.translate(horizontal, vertical);
 }
 
 void Line::within() const {
-
-}
-
-void Line::loadFigure() {
 
 }

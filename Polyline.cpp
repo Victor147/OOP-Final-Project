@@ -29,14 +29,12 @@ void Polyline::print(size_t ind) const {
 	std::cout << std::endl;
 }
 
-void Polyline::translate(size_t ind) {
-
+void Polyline::translate(double horizontal, double vertical) {
+	for (Point& p : points) {
+		p.translate(horizontal, vertical);
+	}
 }
 
 void Polyline::within() const {
-
-}
-
-void Polyline::loadFigure() {
 
 }

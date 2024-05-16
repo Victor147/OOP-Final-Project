@@ -11,6 +11,19 @@ double Point::getY() const {
 	return y;
 }
 
+void Point::setX(double _x) {
+	x = _x;
+}
+
+void Point::setY(double _y) {
+	y = _y;
+}
+
+void Point::translate(double horizontal, double vertical) {
+	x += horizontal;
+	y += vertical;
+}
+
 void Point::print() const {
 	std::cout << " (" << x << ", " << y << ")";
 }
