@@ -1,11 +1,11 @@
 #include <sstream>
-#include "Figure.h"
 #include "Rectangle.h"
 #include "Circle.h"
 #include "Line.h"
 #include "Ellipse.h"
 #include "Polyline.h"
 #include "Polygon.h"
+#include "Figure.h"
 
 Figure* Figure::createFigure(std::string& type, std::vector<Property>& properties) {
 	if (type == "rect")

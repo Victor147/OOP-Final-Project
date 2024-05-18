@@ -1,5 +1,7 @@
 #include <iostream>
 #include "Line.h"
+#include "Rectangle.h"
+#include "Circle.h"
 
 
 Line::Line() : p1(0, 0), p2(0, 0) {}
@@ -26,6 +28,12 @@ void Line::translate(double horizontal, double vertical) {
 	p2.translate(horizontal, vertical);
 }
 
-void Line::within() const {
+bool Line::withinRectangle(Figure* rect) const {
+	Rectangle* rectangle = dynamic_cast<Rectangle*>(rect);
+	return rectangle->contains(p1) && rectangle->contains(p2);
+}
 
+bool Line::withinCircle(Figure* c) const {
+	Circle* circle = dynamic_cast<Circle*>(c);
+	return circle->contains(p1) && circle->contains(p2);
 }

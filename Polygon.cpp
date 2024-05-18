@@ -1,5 +1,7 @@
 #include <iostream>
 #include "Polygon.h"
+#include "Rectangle.h"
+#include "Circle.h"
 
 Polygon::Polygon(std::vector<Point>& _points, std::vector<Property>& _properties) {
 	for (Point p : _points) {
@@ -34,6 +36,22 @@ void Polygon::translate(double horizontal, double vertical) {
 	}
 }
 
-void Polygon::within() const {
+bool Polygon::withinRectangle(Figure* rectangle) const {
+	Rectangle* rect = dynamic_cast<Rectangle*>(rectangle);
+	for (Point p : points) {
+		if (!rect->contains(p)) {
+			return false;
+		}
+	}
+	return true;
+}
 
+bool Polygon::withinCircle(Figure* c) const {
+	Circle* circle = dynamic_cast<Circle*>(c);
+	for (Point p : points) {
+		if (!circle->contains(p)) {
+			return false;
+		}
+	}
+	return true;
 }

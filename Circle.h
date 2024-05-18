@@ -1,6 +1,7 @@
 #pragma once
-#include "Point.h"
+#include <vector>
 #include "Figure.h"
+#include "Point.h"
 
 class Circle : public Figure
 {
@@ -13,5 +14,12 @@ public:
 
 	void print(size_t ind) const;
 	void translate(double horizontal, double vertical);
-	void within() const;
+
+	bool withinRectangle(Figure* rect) const;
+	bool withinCircle(Figure* circle) const;
+
+	Point& getCenter();
+	double getRadius();
+
+	bool contains(const Point& point) const;
 };

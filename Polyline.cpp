@@ -1,5 +1,7 @@
 #include <iostream>
 #include "Polyline.h"
+#include "Rectangle.h"
+#include "Circle.h"
 
 Polyline::Polyline(std::vector<Point>& _points, std::vector<Property>& _properties) {
 	for (Point p : _points) {
@@ -35,6 +37,22 @@ void Polyline::translate(double horizontal, double vertical) {
 	}
 }
 
-void Polyline::within() const {
+bool Polyline::withinRectangle(Figure* rectangle) const {
+	Rectangle* rect = dynamic_cast<Rectangle*>(rectangle);
+	for (Point p : points) {
+		if (!rect->contains(p)) {
+			return false;
+		}
+	}
+	return true;
+}
 
+bool Polyline::withinCircle(Figure* c) const {
+	Circle* circle = dynamic_cast<Circle*>(c);
+	for (Point p : points) {
+		if (!circle->contains(p)) {
+			return false;
+		}
+	}
+	return true;
 }

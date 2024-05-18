@@ -12,5 +12,6 @@ public:
 
 	void print(size_t ind) const;
 	void translate(double horizontal, double vertical);
-	void within() const;
+	bool withinRectangle(Figure* rect) const;
+	bool withinCircle(Figure* circle) const;
 };
