@@ -1,4 +1,5 @@
 #pragma once
+#include <sstream>
 
 class Point {
 private:
@@ -17,4 +18,22 @@ public:
 	void translate(double horizontal, double vertical);
 
 	void print() const;
+
+	friend std::istream& operator>>(std::istream& in, Point& instance)
+	{
+		in >> instance.x;
+		in >> instance.y;
+
+		return in;
+	};
 };
+
+//std::istream& operator>>(std::istream& in, Point& instance) {
+//	float x = 0, y = 0;
+//	in >> x;
+//	in >> y;
+//
+//	instance.setX(x);
+//	instance.setY(y);
+//	return in;
+//};

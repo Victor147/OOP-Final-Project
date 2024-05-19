@@ -1,6 +1,5 @@
 #pragma once
 #include <vector>
-#include "Point.h"
 #include "Figure.h"
 
 class Rectangle : public Figure {
@@ -15,13 +14,14 @@ public:
 
 	void print(size_t ind) const;
 	void translate(double horizontal, double vertical);
+	void readFromFile(std::istream& in);
 
-	bool withinRectangle(Figure* rect) const;
-	bool withinCircle(Figure* circle) const;
+	bool contains(const Point& point) const;
+	bool within(Figure* fig) const;
+	//bool withinRectangle(Figure* rect) const;
+	//bool withinCircle(Figure* circle) const;
 
 	Point& getPoint();
 	double getWidth();
 	double getHeight();
-
-	bool contains(const Point& point) const;
 };

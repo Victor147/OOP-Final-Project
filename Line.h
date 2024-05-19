@@ -12,6 +12,10 @@ public:
 
 	void print(size_t ind) const;
 	void translate(double horizontal, double vertical);
-	bool withinRectangle(Figure* rect) const;
-	bool withinCircle(Figure* circle) const;
+	void readFromFile(std::istream& in);
+
+	bool contains(const Point& p) const;
+	bool within(Figure* fig) const;
+	//bool withinRectangle(Figure* rect) const;
+	//bool withinCircle(Figure* circle) const;
 };

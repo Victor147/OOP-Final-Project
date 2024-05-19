@@ -1,7 +1,5 @@
 #include <iostream>
 #include "Polygon.h"
-#include "Rectangle.h"
-#include "Circle.h"
 
 Polygon::Polygon(std::vector<Point>& _points, std::vector<Property>& _properties) {
 	for (Point p : _points) {
@@ -36,22 +34,39 @@ void Polygon::translate(double horizontal, double vertical) {
 	}
 }
 
-bool Polygon::withinRectangle(Figure* rectangle) const {
-	Rectangle* rect = dynamic_cast<Rectangle*>(rectangle);
+void Polygon::readFromFile(std::istream& in) {
+
+}
+
+bool Polygon::contains(const Point& p) const {
+	return false;
+}
+
+bool Polygon::within(Figure* fig) const {
 	for (Point p : points) {
-		if (!rect->contains(p)) {
+		if (!fig->contains(p)) {
 			return false;
 		}
 	}
 	return true;
 }
 
-bool Polygon::withinCircle(Figure* c) const {
-	Circle* circle = dynamic_cast<Circle*>(c);
-	for (Point p : points) {
-		if (!circle->contains(p)) {
-			return false;
-		}
-	}
-	return true;
-}
+//bool Polygon::withinRectangle(Figure* rectangle) const {
+//	Rectangle* rect = dynamic_cast<Rectangle*>(rectangle);
+//	for (Point p : points) {
+//		if (!rect->contains(p)) {
+//			return false;
+//		}
+//	}
+//	return true;
+//}
+//
+//bool Polygon::withinCircle(Figure* c) const {
+//	Circle* circle = dynamic_cast<Circle*>(c);
+//	for (Point p : points) {
+//		if (!circle->contains(p)) {
+//			return false;
+//		}
+//	}
+//	return true;
+//}

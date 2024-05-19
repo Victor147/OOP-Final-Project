@@ -9,9 +9,9 @@ SVGParser::SVGParser() {
 	//file = nullptr;
 }
 
-SVGParser::SVGParser(std::ifstream* _file) {
-	loadVector(_file);
-}
+//SVGParser::SVGParser(std::ifstream* _file) {
+//	loadVector(_file);
+//}
 
 void SVGParser::setFile(std::ifstream* _file) {
 	//file = _file;
@@ -161,4 +161,20 @@ void SVGParser::loadVector(std::ifstream* file) {
 			figures.push_back(f);
 		}
 	}
+}
+
+void SVGParser::within(Figure* f) {
+	int k = 1;
+	for (Figure* fig : figures) {
+		if (fig->within(f))
+		{
+			fig->print(k);
+			++k;
+		}
+	}
+	//TODO: print if empty
+	//if (k == 1)
+	//{
+	//	std::cout << "No figures are located within " << f->print() << std::endl;
+	//}
 }

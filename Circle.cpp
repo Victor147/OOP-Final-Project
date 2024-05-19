@@ -1,7 +1,5 @@
-#include <iostream>
 #include "Circle.h"
-#include "Property.h"
-#include "Rectangle.h"
+#include <iostream>
 
 Circle::Circle() : c(0, 0), r(0) {}
 Circle::Circle(double _x, double _y, double _r, std::vector<Property>& _properties) : c(_x, _y), r(_r)
@@ -13,39 +11,63 @@ Circle::Circle(double _x, double _y, double _r, std::vector<Property>& _properti
 }
 
 void Circle::print(size_t ind) const {
-	std::cout << ind << ". circle " << c.getX() << " " << c.getY() << " " << r;
-
-	for (Property p : properties) {
-		p.print();
+	if (ind == -1)
+	{
+		std::cout << "circle" << c.getX() << " " << c.getY() << " " << r << "\n";
 	}
+	else {
+		std::cout << ind << ". circle " << c.getX() << " " << c.getY() << " " << r;
 
-	std::cout << std::endl;
+		for (Property p : properties) {
+			p.print();
+		}
+
+		std::cout << std::endl;
+	}
 }
 
 void Circle::translate(double horizontal, double vertical) {
 	c.translate(horizontal, vertical);
 }
 
-bool Circle::withinRectangle(Figure* r) const {
-	Rectangle* rect = dynamic_cast<Rectangle*>(r);
-	return false;
-	//TODO
+void Circle::readFromFile(std::istream& in) {
+	in >> c >> r;
 }
 
-bool Circle::withinCircle(Figure* c) const {
-	Circle* circle = dynamic_cast<Circle*>(c);
-	return false;
-	//TODO
+inline bool Circle::contains(const Point& p) const {
+	return pow(p.getX() - c.getX(), 2) + pow(p.getY() - c.getY(), 2) <= pow(r, 2);
 }
 
+inline bool Circle::within(Figure* fig) const {
+	return fig->contains(c) && fig->contains(Point(c.getX() + r, c.getY())) &&
+		fig->contains(Point(c.getX(), c.getY() + r)) &&
+		fig->contains(Point(c.getX() - r, c.getY())) &&
+		fig->contains(Point(c.getX(), c.getY() - r));
+}
+
+//bool Circle::withinRectangle(Figure* rec) const {
+//	Rectangle* rect = dynamic_cast<Rectangle*>(rec);
+//	Point p1(c.getX() + r, c.getY());
+//	Point p2(c.getX(), c.getY() + r);
+//	Point p3(c.getX() - r, c.getY());
+//	Point p4(c.getX(), c.getY() - r);
+//
+//	return rect->contains(c) && rect->contains(p1) && rect->contains(p2) && rect->contains(p3) && rect->contains(p4);
+//}
+//
+//bool Circle::withinCircle(Figure* circ) const {
+//	Circle* circle = dynamic_cast<Circle*>(circ);
+//
+//	return circle->contains(c) && circle->contains(Point(c.getX() + r, c.getY())) &&
+//		circle->contains(Point(c.getX(), c.getY() + r)) &&
+//		circle->contains(Point(c.getX() - r, c.getY())) &&
+//		circle->contains(Point(c.getX(), c.getY() - r));
+//}
+//
 Point& Circle::getCenter() {
 	return c;
 }
 
 double Circle::getRadius() {
 	return r;
-}
-
-bool Circle::contains(const Point& point) const {
-	return pow(point.getX() - c.getX(), 2) + pow(point.getY() - c.getY(), 2) <= pow(r, 2);
 }

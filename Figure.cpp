@@ -8,7 +8,7 @@
 #include "Figure.h"
 
 Figure* Figure::createFigure(std::string& type, std::vector<Property>& properties) {
-	if (type == "rect")
+	if (type == "rect" || type == "rectangle")
 	{
 		double x = 0, y = 0, width = 0, height = 0;
 		std::vector<Property> cut;

@@ -1,12 +1,14 @@
 #pragma once
 #include <string>
 
-//template <typename T>
 class Property {
 private:
 	std::string name;
 	std::string value;
 public:
+	Property() = default;
+	Property(std::string _name, std::string _value);
+
 	void print() const;
 	void setName(std::string& _name);
 	void setValue(std::string& _value);

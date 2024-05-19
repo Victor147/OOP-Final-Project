@@ -8,11 +8,16 @@
 void Menu::printHelp() {
 	std::cout << "Available commands in this SVG editor:\n"
 		<< "1) open <path>;\n"
-		<< "2) close*;\n"
-		<< "3) save*;\n"
-		<< "4) saveas <name>*;\n"
-		<< "5) help;\n"
-		<< "6) exit.\n"
+		<< "2) print*;\n/"
+		<< "3) create <figure>*;\n"
+		<< "4) erase [<index>]*;\n"
+		<< "5) translate <horizontal> <vertical> [<index>]*;\n"
+		<< "6) within <figure>*;\n"
+		<< "7) close*;\n"
+		<< "8) save*;\n"
+		<< "9) saveas <name>*;\n"
+		<< "10) help;\n"
+		<< "11) exit.\n"
 		<< "* - these are available only after opening a file.\n";
 }
 
@@ -28,29 +33,36 @@ void Menu::handleInput() {
 		std::stringstream ss(choice);
 		ss >> command;
 
-		if (command == "open" && !isOpened)
+		if (command == "open")
 		{
-			std::string path = choice.substr(choice.find(" ") + 1, choice.size());
-
-			std::ifstream file(path);
-			if (!file)
+			if (!isOpened)
 			{
-				std::cout << "File not found!\n";
-				//continue;
+				std::string path = choice.substr(choice.find(" ") + 1, choice.size());
+
+				std::ifstream file(path);
+				if (!file)
+				{
+					std::cout << "File not found! Try again!\n";
+					//continue;
+				}
+				else {
+					//TODO: Print the name of the file rather than just text!
+					std::cout << "Successfully opened the file!\n";
+					isOpened = true;
+					svg.setFile(&file);
+					//svg.print();
+					//svg.erase(2);
+					//svg.print();
+					//svg.erase();
+					//svg.print();
+				}
+
 			}
+			//TODO: if when a file is open, to prompt the user if he wants to save the current file before opening a new one
 			else {
-				//TODO: Print the name of the file rather than just text!
-				std::cout << "Successfully opened the file!\n";
-				isOpened = true;
-				svg.setFile(&file);
-				svg.print();
-				svg.erase(2);
-				svg.print();
-				//svg.erase();
-				//svg.print();
+				std::cout << "You have already opened a file!\n";
 			}
 		}
-		//TODO: if when a file is open, to prompt the user if he wants to save the current file before opening a new one
 		else if (command == "help")
 		{
 			printHelp();
@@ -58,6 +70,66 @@ void Menu::handleInput() {
 		else if (command == "exit")
 		{
 			return;
+		}
+		else if (command == "print" && isOpened) {
+			svg.print();
+		}
+		else if (command == "create" && isOpened)
+		{
+
+		}
+		else if (command == "erase" && isOpened) {
+			std::string ind;
+			if (ss >> ind)
+				svg.erase(std::stoi(ind));
+			else {
+				svg.erase();
+			}
+		}
+		else if (command == "translate" && isOpened) {
+			std::string first, second, ind;
+			double horizontal = 0, vertical = 0;
+			ss >> first;
+			ss >> second;
+
+			std::string fLHand = first.substr(0, first.find("="));
+			std::string sLHand = second.substr(0, second.find("="));
+			if (fLHand == "horizontal")
+			{
+				horizontal = std::stod(first.substr(first.find("=") + 1, first.size()));
+			}
+			else if (fLHand == "vertical")
+			{
+				vertical = std::stod(first.substr(first.find("=") + 1, first.size()));
+			}
+			if (sLHand == "horizontal")
+			{
+				horizontal = std::stod(second.substr(second.find("=") + 1, second.size()));
+			}
+			else if (sLHand == "vertical")
+			{
+				vertical = std::stod(second.substr(second.find("=") + 1, second.size()));
+			}
+
+			if (ss >> ind)
+			{
+				svg.translate(horizontal, vertical, std::stoi(ind));
+			}
+			else {
+				svg.translate(horizontal, vertical);
+			}
+		}
+		else if (command == "within" && isOpened)
+		{
+			std::string type;
+			ss >> type;
+			
+			std::vector<Property> props;
+
+			Figure* f = Figure::createFigure(type, props);
+			ss >> f;
+
+			svg.within(f);
 		}
 		else if (command == "close" || command == "save" || command == "saveas")
 		{
@@ -80,7 +152,7 @@ void Menu::handleInput() {
 				}
 			}
 		}
-		
+
 		else {
 			std::cout << "Invalid command!\n";
 		}

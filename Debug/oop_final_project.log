@@ -1,0 +1,34 @@
+﻿  Circle.cpp
+  Ellipse.cpp
+  Figure.cpp
+  Line.cpp
+  Menu.cpp
+  oop_final_project.cpp
+  Point.cpp
+  Polygon.cpp
+  Polyline.cpp
+  Property.cpp
+  Rectangle.cpp
+  SVGParser.cpp
+C:\Victor\University\First year\Second semester\OOP\oop_final_project\SVGParser.cpp(22,20): warning C4018: '<': signed/unsigned mismatch
+C:\Victor\University\First year\Second semester\OOP\oop_final_project\SVGParser.cpp(91,20): warning C4129: '/': unrecognized character escape sequence
+  Generating Code...
+C:\Victor\University\First year\Second semester\OOP\oop_final_project\Figure.cpp(167): warning C4715: 'Figure::createFigure': not all control paths return a value
+Ellipse.obj : error LNK2005: "class std::basic_istream<char,struct std::char_traits<char> > & __cdecl operator>>(class std::basic_istream<char,struct std::char_traits<char> > &,class Point &)" (??5@YAAAV?$basic_istream@DU?$char_traits@D@std@@@std@@AAV01@AAVPoint@@@Z) already defined in Circle.obj
+Ellipse.obj : error LNK2005: "class std::basic_istream<char,struct std::char_traits<char> > & __cdecl operator>>(class std::basic_istream<char,struct std::char_traits<char> > &,class Figure *)" (??5@YAAAV?$basic_istream@DU?$char_traits@D@std@@@std@@AAV01@PAVFigure@@@Z) already defined in Circle.obj
+Figure.obj : error LNK2005: "class std::basic_istream<char,struct std::char_traits<char> > & __cdecl operator>>(class std::basic_istream<char,struct std::char_traits<char> > &,class Point &)" (??5@YAAAV?$basic_istream@DU?$char_traits@D@std@@@std@@AAV01@AAVPoint@@@Z) already defined in Circle.obj
+Figure.obj : error LNK2005: "class std::basic_istream<char,struct std::char_traits<char> > & __cdecl operator>>(class std::basic_istream<char,struct std::char_traits<char> > &,class Figure *)" (??5@YAAAV?$basic_istream@DU?$char_traits@D@std@@@std@@AAV01@PAVFigure@@@Z) already defined in Circle.obj
+Line.obj : error LNK2005: "class std::basic_istream<char,struct std::char_traits<char> > & __cdecl operator>>(class std::basic_istream<char,struct std::char_traits<char> > &,class Point &)" (??5@YAAAV?$basic_istream@DU?$char_traits@D@std@@@std@@AAV01@AAVPoint@@@Z) already defined in Circle.obj
+Line.obj : error LNK2005: "class std::basic_istream<char,struct std::char_traits<char> > & __cdecl operator>>(class std::basic_istream<char,struct std::char_traits<char> > &,class Figure *)" (??5@YAAAV?$basic_istream@DU?$char_traits@D@std@@@std@@AAV01@PAVFigure@@@Z) already defined in Circle.obj
+Menu.obj : error LNK2005: "class std::basic_istream<char,struct std::char_traits<char> > & __cdecl operator>>(class std::basic_istream<char,struct std::char_traits<char> > &,class Point &)" (??5@YAAAV?$basic_istream@DU?$char_traits@D@std@@@std@@AAV01@AAVPoint@@@Z) already defined in Circle.obj
+Menu.obj : error LNK2005: "class std::basic_istream<char,struct std::char_traits<char> > & __cdecl operator>>(class std::basic_istream<char,struct std::char_traits<char> > &,class Figure *)" (??5@YAAAV?$basic_istream@DU?$char_traits@D@std@@@std@@AAV01@PAVFigure@@@Z) already defined in Circle.obj
+Point.obj : error LNK2005: "class std::basic_istream<char,struct std::char_traits<char> > & __cdecl operator>>(class std::basic_istream<char,struct std::char_traits<char> > &,class Point &)" (??5@YAAAV?$basic_istream@DU?$char_traits@D@std@@@std@@AAV01@AAVPoint@@@Z) already defined in Circle.obj
+Polygon.obj : error LNK2005: "class std::basic_istream<char,struct std::char_traits<char> > & __cdecl operator>>(class std::basic_istream<char,struct std::char_traits<char> > &,class Point &)" (??5@YAAAV?$basic_istream@DU?$char_traits@D@std@@@std@@AAV01@AAVPoint@@@Z) already defined in Circle.obj
+Polygon.obj : error LNK2005: "class std::basic_istream<char,struct std::char_traits<char> > & __cdecl operator>>(class std::basic_istream<char,struct std::char_traits<char> > &,class Figure *)" (??5@YAAAV?$basic_istream@DU?$char_traits@D@std@@@std@@AAV01@PAVFigure@@@Z) already defined in Circle.obj
+Polyline.obj : error LNK2005: "class std::basic_istream<char,struct std::char_traits<char> > & __cdecl operator>>(class std::basic_istream<char,struct std::char_traits<char> > &,class Point &)" (??5@YAAAV?$basic_istream@DU?$char_traits@D@std@@@std@@AAV01@AAVPoint@@@Z) already defined in Circle.obj
+Polyline.obj : error LNK2005: "class std::basic_istream<char,struct std::char_traits<char> > & __cdecl operator>>(class std::basic_istream<char,struct std::char_traits<char> > &,class Figure *)" (??5@YAAAV?$basic_istream@DU?$char_traits@D@std@@@std@@AAV01@PAVFigure@@@Z) already defined in Circle.obj
+Rectangle.obj : error LNK2005: "class std::basic_istream<char,struct std::char_traits<char> > & __cdecl operator>>(class std::basic_istream<char,struct std::char_traits<char> > &,class Point &)" (??5@YAAAV?$basic_istream@DU?$char_traits@D@std@@@std@@AAV01@AAVPoint@@@Z) already defined in Circle.obj
+Rectangle.obj : error LNK2005: "class std::basic_istream<char,struct std::char_traits<char> > & __cdecl operator>>(class std::basic_istream<char,struct std::char_traits<char> > &,class Figure *)" (??5@YAAAV?$basic_istream@DU?$char_traits@D@std@@@std@@AAV01@PAVFigure@@@Z) already defined in Circle.obj
+SVGParser.obj : error LNK2005: "class std::basic_istream<char,struct std::char_traits<char> > & __cdecl operator>>(class std::basic_istream<char,struct std::char_traits<char> > &,class Point &)" (??5@YAAAV?$basic_istream@DU?$char_traits@D@std@@@std@@AAV01@AAVPoint@@@Z) already defined in Circle.obj
+SVGParser.obj : error LNK2005: "class std::basic_istream<char,struct std::char_traits<char> > & __cdecl operator>>(class std::basic_istream<char,struct std::char_traits<char> > &,class Figure *)" (??5@YAAAV?$basic_istream@DU?$char_traits@D@std@@@std@@AAV01@PAVFigure@@@Z) already defined in Circle.obj
+C:\Victor\University\First year\Second semester\OOP\oop_final_project\Debug\oop_final_project.exe : fatal error LNK1169: one or more multiply defined symbols found

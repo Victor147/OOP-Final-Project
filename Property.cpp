@@ -1,6 +1,8 @@
 #include <iostream>
 #include "Property.h"
 
+Property::Property(std::string _name, std::string _value) : name(_name), value(_value) {}
+
 void Property::print() const {
 	std::cout << " " << value;
 }
