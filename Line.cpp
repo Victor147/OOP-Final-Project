@@ -10,14 +10,14 @@ Line::Line(double _x1, double _y1, double _x2, double _y2, std::vector<Property>
 	}
 }
 
-void Line::print(size_t ind) const {
-	std::cout << ind << ". line " << p1.getX() << " " << p1.getY() << " " << p2.getX() << " " << p2.getY();
+void Line::print(std::ostream& out, size_t ind) const {
+	out << ind << ". line " << p1.getX() << " " << p1.getY() << " " << p2.getX() << " " << p2.getY();
 
 	for (Property p : properties) {
-		p.print();
+		p.print(out);
 	}
 
-	std::cout << std::endl;
+	out << std::endl;
 }
 
 void Line::translate(double horizontal, double vertical) {
@@ -27,6 +27,14 @@ void Line::translate(double horizontal, double vertical) {
 
 void Line::readFromFile(std::istream& in) {
 	in >> p1 >> p2;
+}
+
+void Line::save(std::ostream& out) const {
+	out << "<line x1=\"" << p1.getX() << "\" y1=\"" << p1.getY() << "\" x2=\"" << p2.getX() << "\" y2=\"" << p2.getY() << "\"";
+	for (Property p : properties) {
+		p.save(out);
+	}
+	out << " />" << std::endl;
 }
 
 bool Line::contains(const Point& p) const {

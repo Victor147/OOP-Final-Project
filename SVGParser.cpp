@@ -13,14 +13,27 @@ SVGParser::SVGParser() {
 //	loadVector(_file);
 //}
 
-void SVGParser::setFile(std::ifstream* _file) {
-	//file = _file;
+void SVGParser::setFile(std::string& _fileName, std::string& _filePath, std::ifstream* _file){
+	fileName = _fileName;
+	filePath = _filePath;
 	loadVector(_file);
+}
+
+void SVGParser::saveFile() {
+	std::ofstream file(filePath);
+
+	file << "<svg>\n";
+	for (Figure* f : figures) {
+		f->save(file);
+	}
+	file << "</svg>\n";
+
+	file.close();
 }
 
 void SVGParser::print() {
 	for (int i = 0; i < figures.size(); ++i) {
-		figures[i]->print(i + 1);
+		figures[i]->print(std::cout, i + 1);
 	}
 }
 
@@ -168,7 +181,7 @@ void SVGParser::within(Figure* f) {
 	for (Figure* fig : figures) {
 		if (fig->within(f))
 		{
-			fig->print(k);
+			fig->print(std::cout, k);
 			++k;
 		}
 	}
@@ -177,4 +190,10 @@ void SVGParser::within(Figure* f) {
 	//{
 	//	std::cout << "No figures are located within " << f->print() << std::endl;
 	//}
+}
+
+void SVGParser::clear() {
+	fileName = "";
+	filePath = "";
+	figures.clear();
 }

@@ -46,15 +46,19 @@ void Menu::handleInput() {
 					//continue;
 				}
 				else {
-					//TODO: Print the name of the file rather than just text!
-					std::cout << "Successfully opened the file!\n";
+					std::string fileName;
+					if (path.find("\\") == std::string::npos)
+					{
+						fileName = path;
+					}
+					else {
+						fileName = path.substr(path.find_last_of("\\") + 1, path.size());
+					}
+
+					//TODO: Print the name of the file rather than just text! - done
+					std::cout << "Successfully opened " << fileName << "!\n";
 					isOpened = true;
-					svg.setFile(&file);
-					//svg.print();
-					//svg.erase(2);
-					//svg.print();
-					//svg.erase();
-					//svg.print();
+					svg.setFile(fileName, path, &file);
 				}
 
 			}
@@ -144,7 +148,9 @@ void Menu::handleInput() {
 				}
 				else if (command == "save")
 				{
-
+					svg.saveFile();
+					isOpened = false;
+					svg.clear();
 				}
 				else if (command == "saveas")
 				{

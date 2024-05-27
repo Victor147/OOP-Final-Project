@@ -8,18 +8,26 @@ Ellipse::Ellipse(double _cx, double _cy, double _rx, double _ry, std::vector<Pro
 	}
 }
 
-void Ellipse::print(size_t ind) const {
-	std::cout << ind << ". ellipse " << c.getX() << " " << c.getY() << " " << rx << " " << ry;
+void Ellipse::print(std::ostream& out, size_t ind) const {
+	out << ind << ". ellipse " << c.getX() << " " << c.getY() << " " << rx << " " << ry;
 
 	for (Property p : properties) {
-		p.print();
+		p.print(out);
 	}
 
-	std::cout << std::endl;
+	out << std::endl;
 }
 
 void Ellipse::translate(double horizontal, double vertical) {
 	c.translate(horizontal, vertical);
+}
+
+void Ellipse::save(std::ostream& out) const {
+	out << "<ellipse cx=\"" << c.getX() << "\" cy=\"" << c.getY() << "\" rx=\"" << rx << "\" ry=\"" << ry << "\"";
+	for (Property p : properties) {
+		p.save(out);
+	}
+	out << " />\n";
 }
 
 bool Ellipse::contains(const Point& point) const {

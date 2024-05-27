@@ -24,6 +24,10 @@ void Point::translate(double horizontal, double vertical) {
 	y += vertical;
 }
 
-void Point::print() const {
-	std::cout << " (" << x << ", " << y << ")";
+void Point::print(std::ostream& out) const {
+	out << " (" << x << ", " << y << ")";
 }
+
+void Point::save(std::ostream& out) const {
+	out << x << "," << y;
+}	

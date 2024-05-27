@@ -17,7 +17,8 @@ public:
 
 	void translate(double horizontal, double vertical);
 
-	void print() const;
+	void print(std::ostream& out) const;
+	void save(std::ostream& out) const;
 
 	friend std::istream& operator>>(std::istream& in, Point& instance)
 	{

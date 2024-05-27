@@ -12,14 +12,14 @@ Rectangle::Rectangle(double _x, double _y, double _width, double _height, std::v
 	}
 }
 
-void Rectangle::print(size_t ind) const {
-	std::cout << ind << ". rectangle " << p.getX() << " " << p.getY() << " " << width << " " << height;
+void Rectangle::print(std::ostream& out, size_t ind) const {
+	out << ind << ". rectangle " << p.getX() << " " << p.getY() << " " << width << " " << height;
 
 	for (Property p : properties) {
-		p.print();
+		p.print(out);
 	}
 
-	std::cout << std::endl;
+	out << std::endl;
 }
 
 void Rectangle::translate(double horizontal, double vertical) {
@@ -28,6 +28,14 @@ void Rectangle::translate(double horizontal, double vertical) {
 
 void Rectangle::readFromFile(std::istream& in) {
 	in >> p >> width >> height;
+}
+
+void Rectangle::save(std::ostream& out) const {
+	out << "<rect x=\"" << p.getX() << "\" y=\"" << p.getY() << "\" width=\"" << width << "\" height=\"" << height << "\"";
+	for (Property p : properties) {
+		p.save(out);
+	}
+	out << " />" << std::endl;
 }
 
 bool Rectangle::contains(const Point& point) const {

@@ -11,22 +11,22 @@ Polyline::Polyline(std::vector<Point>& _points, std::vector<Property>& _properti
 	}
 }
 
-void Polyline::print(size_t ind) const {
-	std::cout << ind << ". polyline -";
+void Polyline::print(std::ostream& out, size_t ind) const {
+	out << ind << ". polyline -";
 
 	for (size_t i = 0; i < points.size(); ++i) {
-		points[i].print();
+		points[i].print(out);
 		if (i != points.size() - 1)
 		{
-			std::cout << ", ";
+			out << ", ";
 		}
 	}
 
 	for (Property p : properties) {
-		p.print();
+		p.print(out);
 	}
 
-	std::cout << std::endl;
+	out << std::endl;
 }
 
 void Polyline::translate(double horizontal, double vertical) {
@@ -37,6 +37,22 @@ void Polyline::translate(double horizontal, double vertical) {
 
 void Polyline::readFromFile(std::istream& in) {
 
+}
+
+void Polyline::save(std::ostream& out) const {
+	out << "<polyline points=\"";
+	for (size_t i = 0; i < points.size(); ++i) {
+		points[i].save(out);
+		if (i != points.size() - 1)
+		{
+			out << " ";
+		}
+	}
+	out << "\"";
+	for (Property p : properties) {
+		p.save(out);
+	}
+	out << " />\n";
 }
 
 bool Polyline::contains(const Point& point) const {

@@ -3,8 +3,8 @@
 
 Property::Property(std::string _name, std::string _value) : name(_name), value(_value) {}
 
-void Property::print() const {
-	std::cout << " " << value;
+void Property::print(std::ostream& out) const {
+	out << " " << value;
 }
 
 void Property::setName(std::string& _name) {
@@ -17,6 +17,10 @@ void Property::setValue(std::string& _value) {
 
 void Property::insertToValue(std::string& _value) {
 	value += _value;
+}
+
+void Property::save(std::ostream& out) const {
+	out << " " << name << "=\"" << value << "\"";
 }
 
 std::string& Property::getName() {

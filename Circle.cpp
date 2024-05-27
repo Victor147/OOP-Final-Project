@@ -10,19 +10,19 @@ Circle::Circle(double _x, double _y, double _r, std::vector<Property>& _properti
 	}
 }
 
-void Circle::print(size_t ind) const {
+void Circle::print(std::ostream& out, size_t ind) const {
 	if (ind == -1)
 	{
-		std::cout << "circle" << c.getX() << " " << c.getY() << " " << r << "\n";
+		out << "circle" << c.getX() << " " << c.getY() << " " << r << "\n";
 	}
 	else {
-		std::cout << ind << ". circle " << c.getX() << " " << c.getY() << " " << r;
+		out << ind << ". circle " << c.getX() << " " << c.getY() << " " << r;
 
 		for (Property p : properties) {
-			p.print();
+			p.print(out);
 		}
 
-		std::cout << std::endl;
+		out << std::endl;
 	}
 }
 
@@ -32,6 +32,14 @@ void Circle::translate(double horizontal, double vertical) {
 
 void Circle::readFromFile(std::istream& in) {
 	in >> c >> r;
+}
+
+void Circle::save(std::ostream& out) const {
+	out << "<circle cx=\"" << c.getX() << "\" cy=\"" << c.getY() << "\" r=\"" << r << "\"";
+	for (Property p : properties) {
+		p.save(out);
+	}
+	out << " />\n";
 }
 
 inline bool Circle::contains(const Point& p) const {

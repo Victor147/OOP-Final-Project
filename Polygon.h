@@ -9,9 +9,10 @@ public:
 	Polygon() = default;
 	Polygon(std::vector<Point>& _points, std::vector<Property>& _properties);
 
-	void print(size_t ind) const;
+	void print(std::ostream& out, size_t ind = -1) const;
 	void translate(double horizontal, double vertical);
 	void readFromFile(std::istream& in);
+	void save(std::ostream& out) const;
 
 	bool contains(const Point& point) const;
 	bool within(Figure* fig) const;

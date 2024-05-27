@@ -10,22 +10,22 @@ Polygon::Polygon(std::vector<Point>& _points, std::vector<Property>& _properties
 	}
 }
 
-void Polygon::print(size_t ind) const {
-	std::cout << ind << ". polygon -";
+void Polygon::print(std::ostream& out, size_t ind) const {
+	out << ind << ". polygon -";
 
 	for (size_t i = 0; i < points.size(); ++i) {
-		points[i].print();
+		points[i].print(out);
 		if (i != points.size() - 1)
 		{
-			std::cout << ", ";
+			out << ", ";
 		}
 	}
 
 	for (Property p : properties) {
-		p.print();
+		p.print(out);
 	}
 
-	std::cout << std::endl;
+	out << std::endl;
 }
 
 void Polygon::translate(double horizontal, double vertical) {
@@ -36,6 +36,22 @@ void Polygon::translate(double horizontal, double vertical) {
 
 void Polygon::readFromFile(std::istream& in) {
 
+}
+
+void Polygon::save(std::ostream& out) const {
+	out << "<polygon points=\"";
+	for (size_t i = 0; i < points.size(); ++i) {
+		points[i].save(out);
+		if (i != points.size() - 1)
+		{
+			out << " ";
+		}
+	}
+	out << "\"";
+	for (Property p : properties) {
+		p.save(out);
+	}
+	out << " />\n";
 }
 
 bool Polygon::contains(const Point& p) const {
