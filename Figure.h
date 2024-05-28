@@ -13,6 +13,7 @@ public:
 	virtual bool within(Figure* fig) const = 0;
 	virtual void readFromFile(std::istream& in) = 0;
 	virtual void save(std::ostream& out) const = 0;
+	virtual std::string getType() const = 0;
 
 	static Figure* createFigure(std::string& type, std::vector<Property>& properties);
 

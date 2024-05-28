@@ -40,6 +40,10 @@ void Ellipse::readFromFile(std::istream& in) {
 	in >> ry;
 }
 
+std::string Ellipse::getType() const {
+	return "ellipse";
+}
+
 bool Ellipse::within(Figure* figure) const {
 	return figure->contains(c) && figure->contains(Point(c.getX() + rx, c.getY())) &&
 		figure->contains(Point(c.getX(), c.getY() + ry)) &&

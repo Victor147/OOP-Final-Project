@@ -13,7 +13,7 @@ Circle::Circle(double _x, double _y, double _r, std::vector<Property>& _properti
 void Circle::print(std::ostream& out, size_t ind) const {
 	if (ind == -1)
 	{
-		out << "circle" << c.getX() << " " << c.getY() << " " << r << "\n";
+		out << "circle " << c.getX() << " " << c.getY() << " " << r << "\n";
 	}
 	else {
 		out << ind << ". circle " << c.getX() << " " << c.getY() << " " << r;
@@ -40,6 +40,10 @@ void Circle::save(std::ostream& out) const {
 		p.save(out);
 	}
 	out << " />\n";
+}
+
+std::string Circle::getType() const {
+	return "circle";
 }
 
 inline bool Circle::contains(const Point& p) const {

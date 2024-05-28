@@ -38,6 +38,10 @@ void Rectangle::save(std::ostream& out) const {
 	out << " />" << std::endl;
 }
 
+std::string Rectangle::getType() const {
+	return "rectangle";
+}
+
 bool Rectangle::contains(const Point& point) const {
 	return point.getX() >= p.getX() && point.getX() <= p.getX() + width &&
 		point.getY() >= p.getY() && point.getY() <= p.getY() + height;

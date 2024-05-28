@@ -43,7 +43,6 @@ void Menu::handleInput() {
 				if (!file)
 				{
 					std::cout << "File not found! Try again!\n";
-					//continue;
 				}
 				else {
 					std::string fileName;
@@ -55,7 +54,6 @@ void Menu::handleInput() {
 						fileName = path.substr(path.find_last_of("\\") + 1, path.size());
 					}
 
-					//TODO: Print the name of the file rather than just text! - done
 					std::cout << "Successfully opened " << fileName << "!\n";
 					isOpened = true;
 					svg.setFile(fileName, path, &file);
@@ -73,6 +71,7 @@ void Menu::handleInput() {
 		}
 		else if (command == "exit")
 		{
+			std::cout << "Exiting the program...\n";
 			return;
 		}
 		else if (command == "print" && isOpened) {
@@ -80,7 +79,17 @@ void Menu::handleInput() {
 		}
 		else if (command == "create" && isOpened)
 		{
+			std::string figureType;
+			ss >> figureType;
 
+			figureType = figureType == "rectangle" ? "rect" : figureType;
+
+			std::vector<Property> props;
+
+			Figure* f = Figure::createFigure(figureType, props);
+
+			ss >> f;
+			svg.addFigure(f);
 		}
 		else if (command == "erase" && isOpened) {
 			std::string ind;
@@ -127,7 +136,7 @@ void Menu::handleInput() {
 		{
 			std::string type;
 			ss >> type;
-			
+
 			std::vector<Property> props;
 
 			Figure* f = Figure::createFigure(type, props);
@@ -149,12 +158,19 @@ void Menu::handleInput() {
 				else if (command == "save")
 				{
 					svg.saveFile();
+					//TODO: check whether to clear the data
 					isOpened = false;
 					svg.clear();
 				}
 				else if (command == "saveas")
 				{
+					std::string savePath;
+					ss >> savePath;
 
+					svg.saveAsFile(savePath);
+					//TODO: check whether to clear the data
+					isOpened = false;
+					svg.clear();
 				}
 			}
 		}

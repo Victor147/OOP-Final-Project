@@ -37,6 +37,10 @@ void Line::save(std::ostream& out) const {
 	out << " />" << std::endl;
 }
 
+std::string Line::getType() const {
+	return "line";
+}
+
 bool Line::contains(const Point& p) const {
 	return false;
 }

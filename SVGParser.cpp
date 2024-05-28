@@ -9,19 +9,7 @@ SVGParser::SVGParser() {
 	//file = nullptr;
 }
 
-//SVGParser::SVGParser(std::ifstream* _file) {
-//	loadVector(_file);
-//}
-
-void SVGParser::setFile(std::string& _fileName, std::string& _filePath, std::ifstream* _file){
-	fileName = _fileName;
-	filePath = _filePath;
-	loadVector(_file);
-}
-
-void SVGParser::saveFile() {
-	std::ofstream file(filePath);
-
+void SVGParser::save(std::ofstream& file) {
 	file << "<svg>\n";
 	for (Figure* f : figures) {
 		f->save(file);
@@ -31,29 +19,50 @@ void SVGParser::saveFile() {
 	file.close();
 }
 
+//SVGParser::SVGParser(std::ifstream* _file) {
+//	loadVector(_file);
+//}
+
+void SVGParser::setFile(std::string& _fileName, std::string& _filePath, std::ifstream* _file) {
+	fileName = _fileName;
+	filePath = _filePath;
+	loadVector(_file);
+}
+
+void SVGParser::saveFile() {
+	std::ofstream file(filePath);
+	save(file);
+	std::cout << "Successfully saved the changes to " << fileName << "!\n";
+}
+
 void SVGParser::print() {
 	for (int i = 0; i < figures.size(); ++i) {
 		figures[i]->print(std::cout, i + 1);
 	}
 }
 
-void SVGParser::erase(size_t ind){
+void SVGParser::erase(size_t ind) {
 	if (ind == -1)
 	{
 		figures.clear();
+		std::cout << "Erased all figures!\n";
 	}
 	else {
-		ind -= 1;
+		--ind;
 		if (ind < 0 || ind >= figures.size())
 		{
-			std::cout << "There is no figure number " << ind << "!" << std::endl;
+			std::cout << "There is no figure number " << ind + 1 << "!\n";
 		}
 		else {
+			std::cout << "Erased a " << figures[ind]->getType() << "! (" << ind+1 << ")\n";
 			figures.erase(figures.begin() + ind);
-			//TODO: print the figure that was erased
-			std::cout << "Erased a figure! (" << ++ind << ")" << std::endl;
 		}
 	}
+}
+
+void SVGParser::addFigure(Figure* f) {
+	figures.push_back(f);
+	std::cout << "Successfully created a " << f->getType() << "! (" << figures.size() << ")\n";
 }
 
 void SVGParser::translate(double horizontal, double vertical, size_t ind) {
@@ -67,15 +76,15 @@ void SVGParser::translate(double horizontal, double vertical, size_t ind) {
 		std::cout << "Translated all figures!" << std::endl;
 	}
 	else {
-		ind -= 1;
+		--ind;
 		if (ind < 0 || ind >= figures.size())
 		{
-			std::cout << "There is no figure number " << ind << "!" << std::endl;
+			std::cout << "There is no figure number " << ind + 1 << "!" << std::endl;
 		}
 		else {
-			figures[ind]->translate(horizontal, vertical);
-			//TODO: print the figure that was translated
-			std::cout << "Translated a figure! (" << ++ind << ")" << std::endl;
+			Figure* f = figures[ind];
+			f->translate(horizontal, vertical);
+			std::cout << "Translated a " << f->getType() << "! (" << ++ind << ")\n";
 		}
 	}
 }
@@ -154,7 +163,7 @@ void SVGParser::loadVector(std::ifstream* file) {
 						p.insertToValue(add);
 					}
 					else {
-						std::string temp = " " + word.substr(0, word.find("\"") );
+						std::string temp = " " + word.substr(0, word.find("\""));
 						p.insertToValue(temp);
 						waitForQuote = false;
 					}
@@ -185,15 +194,21 @@ void SVGParser::within(Figure* f) {
 			++k;
 		}
 	}
+	if (k == 1)
+	{
+		std::cout << "No figures are located within ";
+		f->print(std::cout);
+	}
 	//TODO: print if empty
-	//if (k == 1)
-	//{
-	//	std::cout << "No figures are located within " << f->print() << std::endl;
-	//}
 }
 
 void SVGParser::clear() {
 	fileName = "";
 	filePath = "";
 	figures.clear();
+}
+
+void SVGParser::saveAsFile(std::string& path) {
+	std::ofstream file(path);
+	save(file);
 }

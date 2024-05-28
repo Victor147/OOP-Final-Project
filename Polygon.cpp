@@ -54,6 +54,10 @@ void Polygon::save(std::ostream& out) const {
 	out << " />\n";
 }
 
+std::string Polygon::getType() const {
+	return "polygon";
+}
+
 bool Polygon::contains(const Point& p) const {
 	return false;
 }

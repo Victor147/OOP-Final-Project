@@ -15,6 +15,8 @@ public:
 	void readFromFile(std::istream&);
 	void save(std::ostream& out) const;
 
+	std::string getType() const;
+
 	bool contains(const Point& p) const;
 	bool within(Figure*) const;
 

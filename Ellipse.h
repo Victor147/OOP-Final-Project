@@ -15,6 +15,8 @@ public:
 	void translate(double horizontal, double vertical);
 	void readFromFile(std::istream& in);
 	void save(std::ostream& out) const;
+
+	std::string getType() const;
 	
 	bool contains(const Point& point) const;
 	bool within(Figure* figure) const;

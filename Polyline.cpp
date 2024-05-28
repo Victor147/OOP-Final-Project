@@ -55,6 +55,10 @@ void Polyline::save(std::ostream& out) const {
 	out << " />\n";
 }
 
+std::string Polyline::getType() const {
+	return "polyline";
+}
+
 bool Polyline::contains(const Point& point) const {
 	return false;
 }

@@ -12,14 +12,17 @@ private:
 	std::vector<Figure*> figures;
 
 	void loadVector(std::ifstream* file);
+	void save(std::ofstream& file);
 public:
 	SVGParser();
 	//SVGParser(std::ifstream* _file);
 	void setFile(std::string& _fileName, std::string& _filePath,  std::ifstream* _file);
 	void saveFile();
-
+	void saveAsFile(std::string& path);
+	
 	void print();
 	void erase(size_t ind = -1);
+	void addFigure(Figure* f);
 	void translate(double horizontal, double vertical, size_t ind = -1);
 	void within(Figure* f);
 	void clear();
