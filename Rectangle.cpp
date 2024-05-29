@@ -13,13 +13,19 @@ Rectangle::Rectangle(double _x, double _y, double _width, double _height, std::v
 }
 
 void Rectangle::print(std::ostream& out, size_t ind) const {
-	out << ind << ". rectangle " << p.getX() << " " << p.getY() << " " << width << " " << height;
-
-	for (Property p : properties) {
-		p.print(out);
+	if (ind == -1)
+	{
+		out << "rectangle " << p.getX() << " " << p.getY() << " " << width << " " << height << "\n";
 	}
+	else {
+		out << ind << ". rectangle " << p.getX() << " " << p.getY() << " " << width << " " << height;
 
-	out << std::endl;
+		for (Property p : properties) {
+			p.print(out);
+		}
+
+		out << std::endl;
+	}
 }
 
 void Rectangle::translate(double horizontal, double vertical) {
@@ -28,6 +34,17 @@ void Rectangle::translate(double horizontal, double vertical) {
 
 void Rectangle::readFromFile(std::istream& in) {
 	in >> p >> width >> height;
+	std::string fill, stroke;
+	if (in >> fill)
+	{
+		Property p("fill", fill);
+		properties.push_back(p);
+	}
+	if (in >> stroke)
+	{
+		Property p("stroke", stroke);
+		properties.push_back(p);
+	}
 }
 
 void Rectangle::save(std::ostream& out) const {
@@ -52,21 +69,6 @@ bool Rectangle::within(Figure* fig) const {
 				fig->contains(Point(p.getX(), p.getY() + height)) &&
 				fig->contains(Point(p.getX() + width, p.getY() + height));
 }
-
-//bool Rectangle::withinRectangle(Figure* r) const {
-//	Rectangle* rect = dynamic_cast<Rectangle*>(r);
-//	/*return rect.contains(p) && rect.contains(Point(p.getX() + width, p.getY())) &&
-//		rect.contains(Point(p.getX(), p.getY() + height)) &&
-//		rect.contains(Point(p.getX() + width, p.getY() + height));*/
-//	return rect->contains(p) && width <= rect->getWidth() - p.getX() && height <= rect->getHeight() - p.getY();
-//}
-//
-//bool Rectangle::withinCircle(Figure* c) const {
-//	Circle* circle = dynamic_cast<Circle*>(c);
-//	return circle->contains(p) && circle->contains(Point(p.getX() + width, p.getY())) &&
-//		circle->contains(Point(p.getX(), p.getY() + height)) &&
-//		circle->contains(Point(p.getX() + width, p.getY() + height));
-//}
 
 Point& Rectangle::getPoint() {
 	return p;

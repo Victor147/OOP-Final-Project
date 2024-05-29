@@ -130,6 +130,7 @@
     <ClCompile Include="Circle.cpp" />
     <ClCompile Include="Ellipse.cpp" />
     <ClCompile Include="Figure.cpp" />
+    <ClCompile Include="FigureTest.cpp" />
     <ClCompile Include="Line.cpp" />
     <ClCompile Include="Menu.cpp" />
     <ClCompile Include="oop_final_project.cpp" />
@@ -142,6 +143,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Circle.h" />
+    <ClInclude Include="doctest.h" />
     <ClInclude Include="Ellipse.h" />
     <ClInclude Include="Figure.h" />
     <ClInclude Include="Line.h" />

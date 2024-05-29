@@ -19,6 +19,4 @@ public:
 
 	bool contains(const Point& point) const;
 	bool within(Figure* fig) const;
-	//bool withinRectangle(Figure* rect) const;
-	//bool withinCircle(Figure* circle) const;
 };

@@ -11,13 +11,19 @@ Line::Line(double _x1, double _y1, double _x2, double _y2, std::vector<Property>
 }
 
 void Line::print(std::ostream& out, size_t ind) const {
-	out << ind << ". line " << p1.getX() << " " << p1.getY() << " " << p2.getX() << " " << p2.getY();
-
-	for (Property p : properties) {
-		p.print(out);
+	if (ind == -1)
+	{
+		out << "line " << p1.getX() << " " << p1.getY() << " " << p2.getX() << " " << p2.getY() << "\n";
 	}
+	else {
+		out << ind << ". line " << p1.getX() << " " << p1.getY() << " " << p2.getX() << " " << p2.getY();
 
-	out << std::endl;
+		for (Property p : properties) {
+			p.print(out);
+		}
+
+		out << std::endl;
+	}
 }
 
 void Line::translate(double horizontal, double vertical) {
@@ -27,6 +33,17 @@ void Line::translate(double horizontal, double vertical) {
 
 void Line::readFromFile(std::istream& in) {
 	in >> p1 >> p2;
+	std::string fill, stroke;
+	if (in >> fill)
+	{
+		Property p("fill", fill);
+		properties.push_back(p);
+	}
+	if (in >> stroke)
+	{
+		Property p("stroke", stroke);
+		properties.push_back(p);
+	}
 }
 
 void Line::save(std::ostream& out) const {
@@ -48,13 +65,3 @@ bool Line::contains(const Point& p) const {
 bool Line::within(Figure* fig) const {
 	return fig->contains(p1) && fig->contains(p2);
 }
-
-//bool Line::withinRectangle(Figure* rect) const {
-//	Rectangle* rectangle = dynamic_cast<Rectangle*>(rect);
-//	return rectangle->contains(p1) && rectangle->contains(p2);
-//}
-//
-//bool Line::withinCircle(Figure* c) const {
-//	Circle* circle = dynamic_cast<Circle*>(c);
-//	return circle->contains(p1) && circle->contains(p2);
-//}

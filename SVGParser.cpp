@@ -5,9 +5,7 @@
 #include "SVGParser.h"
 #include "Figure.h"
 
-SVGParser::SVGParser() {
-	//file = nullptr;
-}
+SVGParser::SVGParser() {}
 
 void SVGParser::save(std::ofstream& file) {
 	file << "<svg>\n";
@@ -19,9 +17,17 @@ void SVGParser::save(std::ofstream& file) {
 	file.close();
 }
 
-//SVGParser::SVGParser(std::ifstream* _file) {
-//	loadVector(_file);
-//}
+void SVGParser::closeFile() {
+	fileName = "";
+	filePath = "";
+	for (size_t i = 0; i < figures.size(); i++)
+	{
+		delete figures[i];
+	}
+	figures.clear();
+
+	std::cout << "Closing the file...\n";
+}
 
 void SVGParser::setFile(std::string& _fileName, std::string& _filePath, std::ifstream* _file) {
 	fileName = _fileName;
@@ -36,8 +42,14 @@ void SVGParser::saveFile() {
 }
 
 void SVGParser::print() {
-	for (int i = 0; i < figures.size(); ++i) {
-		figures[i]->print(std::cout, i + 1);
+	if (figures.size() == 0)
+	{
+		std::cout << "There are no figures!\n";
+	}
+	else {
+		for (int i = 0; i < figures.size(); ++i) {
+			figures[i]->print(std::cout, i + 1);
+		}
 	}
 }
 
@@ -54,7 +66,7 @@ void SVGParser::erase(size_t ind) {
 			std::cout << "There is no figure number " << ind + 1 << "!\n";
 		}
 		else {
-			std::cout << "Erased a " << figures[ind]->getType() << "! (" << ind+1 << ")\n";
+			std::cout << "Erased a " << figures[ind]->getType() << "! (" << ind + 1 << ")\n";
 			figures.erase(figures.begin() + ind);
 		}
 	}
@@ -124,7 +136,6 @@ void SVGParser::loadVector(std::ifstream* file) {
 
 	for (std::string l : lines) {
 		std::string type = l.substr(l.find("<") + 1, l.find(" ") - 1);
-		//Figure* f = Figure::createFigure(type);
 		Property p;
 
 		std::vector<Property> properties;
@@ -199,16 +210,15 @@ void SVGParser::within(Figure* f) {
 		std::cout << "No figures are located within ";
 		f->print(std::cout);
 	}
-	//TODO: print if empty
-}
-
-void SVGParser::clear() {
-	fileName = "";
-	filePath = "";
-	figures.clear();
 }
 
 void SVGParser::saveAsFile(std::string& path) {
 	std::ofstream file(path);
 	save(file);
+}
+
+SVGParser::~SVGParser() {
+	for (Figure* f : figures) {
+		delete f;
+	}
 }

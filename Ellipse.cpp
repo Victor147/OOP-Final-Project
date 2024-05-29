@@ -38,6 +38,17 @@ void Ellipse::readFromFile(std::istream& in) {
 	in >> c;
 	in >> rx;
 	in >> ry;
+	std::string fill, stroke;
+	if (in >> fill)
+	{
+		Property p("fill", fill);
+		properties.push_back(p);
+	}
+	if (in >> stroke)
+	{
+		Property p("stroke", stroke);
+		properties.push_back(p);
+	}
 }
 
 std::string Ellipse::getType() const {
@@ -50,16 +61,3 @@ bool Ellipse::within(Figure* figure) const {
 		figure->contains(Point(c.getX() - rx, c.getY())) &&
 		figure->contains(Point(c.getX(), c.getY() - ry));
 }
-
-//bool Ellipse::withinRectangle(Figure* rectangle) const {
-//	Rectangle* rect = dynamic_cast<Rectangle*>(rectangle);
-//	return rect->contains(c) && rx <= rect->getWidth() - c.getX() && ry <= rect->getHeight() - c.getY();
-//}
-//
-//bool Ellipse::withinCircle(Figure* circ) const {
-//	Circle* circle = dynamic_cast<Circle*>(circ);
-//	return circle->contains(c) && circle->contains(Point(c.getX() + rx, c.getY())) &&
-//		circle->contains(Point(c.getX(), c.getY() + ry)) &&
-//		circle->contains(Point(c.getX() - rx, c.getY())) &&
-//		circle->contains(Point(c.getX(), c.getY() - ry));
-//}

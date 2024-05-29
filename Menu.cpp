@@ -22,7 +22,7 @@ void Menu::printHelp() {
 }
 
 void Menu::handleInput() {
-	bool isOpened = false;
+	bool isOpened = false, specialCase = false;
 	SVGParser svg;
 
 	while (true)
@@ -60,7 +60,6 @@ void Menu::handleInput() {
 				}
 
 			}
-			//TODO: if when a file is open, to prompt the user if he wants to save the current file before opening a new one
 			else {
 				std::cout << "You have already opened a file!\n";
 			}
@@ -74,77 +73,9 @@ void Menu::handleInput() {
 			std::cout << "Exiting the program...\n";
 			return;
 		}
-		else if (command == "print" && isOpened) {
-			svg.print();
-		}
-		else if (command == "create" && isOpened)
-		{
-			std::string figureType;
-			ss >> figureType;
-
-			figureType = figureType == "rectangle" ? "rect" : figureType;
-
-			std::vector<Property> props;
-
-			Figure* f = Figure::createFigure(figureType, props);
-
-			ss >> f;
-			svg.addFigure(f);
-		}
-		else if (command == "erase" && isOpened) {
-			std::string ind;
-			if (ss >> ind)
-				svg.erase(std::stoi(ind));
-			else {
-				svg.erase();
-			}
-		}
-		else if (command == "translate" && isOpened) {
-			std::string first, second, ind;
-			double horizontal = 0, vertical = 0;
-			ss >> first;
-			ss >> second;
-
-			std::string fLHand = first.substr(0, first.find("="));
-			std::string sLHand = second.substr(0, second.find("="));
-			if (fLHand == "horizontal")
-			{
-				horizontal = std::stod(first.substr(first.find("=") + 1, first.size()));
-			}
-			else if (fLHand == "vertical")
-			{
-				vertical = std::stod(first.substr(first.find("=") + 1, first.size()));
-			}
-			if (sLHand == "horizontal")
-			{
-				horizontal = std::stod(second.substr(second.find("=") + 1, second.size()));
-			}
-			else if (sLHand == "vertical")
-			{
-				vertical = std::stod(second.substr(second.find("=") + 1, second.size()));
-			}
-
-			if (ss >> ind)
-			{
-				svg.translate(horizontal, vertical, std::stoi(ind));
-			}
-			else {
-				svg.translate(horizontal, vertical);
-			}
-		}
-		else if (command == "within" && isOpened)
-		{
-			std::string type;
-			ss >> type;
-
-			std::vector<Property> props;
-
-			Figure* f = Figure::createFigure(type, props);
-			ss >> f;
-
-			svg.within(f);
-		}
-		else if (command == "close" || command == "save" || command == "saveas")
+		else if (command == "close" || command == "save" || command == "saveas" ||
+			command == "within" || command == "translate" || command == "erase" ||
+			command == "create" || command == "print")
 		{
 			if (!isOpened)
 			{
@@ -153,14 +84,21 @@ void Menu::handleInput() {
 			else {
 				if (command == "close")
 				{
+					std::cout << "Do you want to save the file before closing it? (y/n)\n";
+					char choice;
+					std::cin >> choice;
+					std::cin.ignore();
+					if (choice == 'y')
+					{
+						svg.saveFile();
+					}
 
+					svg.closeFile();
+					isOpened = false;
 				}
 				else if (command == "save")
 				{
 					svg.saveFile();
-					//TODO: check whether to clear the data
-					isOpened = false;
-					svg.clear();
 				}
 				else if (command == "saveas")
 				{
@@ -168,13 +106,80 @@ void Menu::handleInput() {
 					ss >> savePath;
 
 					svg.saveAsFile(savePath);
-					//TODO: check whether to clear the data
-					isOpened = false;
-					svg.clear();
+				}
+				else if (command == "print" && isOpened)
+				{
+					svg.print();
+				}
+				else if (command == "create" && isOpened)
+				{
+					std::string figureType;
+					ss >> figureType;
+
+					figureType = figureType == "rectangle" ? "rect" : figureType;
+
+					std::vector<Property> props;
+
+					Figure* f = Figure::createFigure(figureType, props);
+
+					ss >> f;
+					svg.addFigure(f);
+				}
+				else if (command == "erase" && isOpened) {
+					std::string ind;
+					if (ss >> ind)
+						svg.erase(std::stoi(ind));
+					else {
+						svg.erase();
+					}
+				}
+				else if (command == "translate" && isOpened) {
+					std::string first, second, ind;
+					double horizontal = 0, vertical = 0;
+					ss >> first;
+					ss >> second;
+
+					std::string fLHand = first.substr(0, first.find("="));
+					std::string sLHand = second.substr(0, second.find("="));
+					if (fLHand == "horizontal")
+					{
+						horizontal = std::stod(first.substr(first.find("=") + 1, first.size()));
+					}
+					else if (fLHand == "vertical")
+					{
+						vertical = std::stod(first.substr(first.find("=") + 1, first.size()));
+					}
+					if (sLHand == "horizontal")
+					{
+						horizontal = std::stod(second.substr(second.find("=") + 1, second.size()));
+					}
+					else if (sLHand == "vertical")
+					{
+						vertical = std::stod(second.substr(second.find("=") + 1, second.size()));
+					}
+
+					if (ss >> ind)
+					{
+						svg.translate(horizontal, vertical, std::stoi(ind));
+					}
+					else {
+						svg.translate(horizontal, vertical);
+					}
+				}
+				else if (command == "within" && isOpened)
+				{
+					std::string type;
+					ss >> type;
+
+					std::vector<Property> props;
+
+					Figure* f = Figure::createFigure(type, props);
+					ss >> f;
+
+					svg.within(f);
 				}
 			}
 		}
-
 		else {
 			std::cout << "Invalid command!\n";
 		}

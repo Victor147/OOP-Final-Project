@@ -11,13 +11,19 @@ Polygon::Polygon(std::vector<Point>& _points, std::vector<Property>& _properties
 }
 
 void Polygon::print(std::ostream& out, size_t ind) const {
-	out << ind << ". polygon -";
+	if (ind == -1)
+	{
+		out << "polygon - ";
+	}
+	else {
+		out << ind << ". polygon -";
+	}
 
 	for (size_t i = 0; i < points.size(); ++i) {
 		points[i].print(out);
 		if (i != points.size() - 1)
 		{
-			out << ", ";
+			out << ",";
 		}
 	}
 
@@ -35,7 +41,39 @@ void Polygon::translate(double horizontal, double vertical) {
 }
 
 void Polygon::readFromFile(std::istream& in) {
-
+	int isPoint = 0, countWords = 0;
+	std::string value;
+	double x = 0, y = 0;
+	while (in >> value) {
+		if (isdigit(value[0]))
+		{
+			if (isPoint == 0) {
+				x = stoi(value);
+				++isPoint;
+			}
+			else if (isPoint == 1) {
+				y = stoi(value);
+				Point p(x, y);
+				points.push_back(p);
+				isPoint = 0;
+				x = 0;
+				y = 0;
+			}
+		}
+		else {
+			if (countWords == 0)
+			{
+				Property p("fill", value);
+				properties.push_back(p);
+				++countWords;
+			}
+			else if (countWords == 1) {
+				Property p("stroke", value);
+				properties.push_back(p);
+				++countWords;
+			}
+		}
+	}
 }
 
 void Polygon::save(std::ostream& out) const {
@@ -70,23 +108,3 @@ bool Polygon::within(Figure* fig) const {
 	}
 	return true;
 }
-
-//bool Polygon::withinRectangle(Figure* rectangle) const {
-//	Rectangle* rect = dynamic_cast<Rectangle*>(rectangle);
-//	for (Point p : points) {
-//		if (!rect->contains(p)) {
-//			return false;
-//		}
-//	}
-//	return true;
-//}
-//
-//bool Polygon::withinCircle(Figure* c) const {
-//	Circle* circle = dynamic_cast<Circle*>(c);
-//	for (Point p : points) {
-//		if (!circle->contains(p)) {
-//			return false;
-//		}
-//	}
-//	return true;
-//}

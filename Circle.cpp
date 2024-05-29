@@ -32,6 +32,17 @@ void Circle::translate(double horizontal, double vertical) {
 
 void Circle::readFromFile(std::istream& in) {
 	in >> c >> r;
+	std::string fill, stroke;
+	if (in >> fill)
+	{
+		Property p("fill", fill);
+		properties.push_back(p);
+	}
+	if (in >> stroke)
+	{
+		Property p("stroke", stroke);
+		properties.push_back(p);
+	}
 }
 
 void Circle::save(std::ostream& out) const {
@@ -57,25 +68,6 @@ inline bool Circle::within(Figure* fig) const {
 		fig->contains(Point(c.getX(), c.getY() - r));
 }
 
-//bool Circle::withinRectangle(Figure* rec) const {
-//	Rectangle* rect = dynamic_cast<Rectangle*>(rec);
-//	Point p1(c.getX() + r, c.getY());
-//	Point p2(c.getX(), c.getY() + r);
-//	Point p3(c.getX() - r, c.getY());
-//	Point p4(c.getX(), c.getY() - r);
-//
-//	return rect->contains(c) && rect->contains(p1) && rect->contains(p2) && rect->contains(p3) && rect->contains(p4);
-//}
-//
-//bool Circle::withinCircle(Figure* circ) const {
-//	Circle* circle = dynamic_cast<Circle*>(circ);
-//
-//	return circle->contains(c) && circle->contains(Point(c.getX() + r, c.getY())) &&
-//		circle->contains(Point(c.getX(), c.getY() + r)) &&
-//		circle->contains(Point(c.getX() - r, c.getY())) &&
-//		circle->contains(Point(c.getX(), c.getY() - r));
-//}
-//
 Point& Circle::getCenter() {
 	return c;
 }

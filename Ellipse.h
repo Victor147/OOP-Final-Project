@@ -20,6 +20,4 @@ public:
 	
 	bool contains(const Point& point) const;
 	bool within(Figure* figure) const;
-	//bool withinRectangle(Figure* rect) const;
-	//bool withinCircle(Figure* circle) const;
 };

@@ -13,6 +13,9 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Source Files\UnitTests">
+      <UniqueIdentifier>{d2ea7675-a92d-4bdd-8880-b9b89b463db3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="oop_final_project.cpp">
@@ -51,6 +54,9 @@
     <ClCompile Include="Polygon.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="FigureTest.cpp">
+      <Filter>Source Files\UnitTests</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SVGParser.h">
@@ -84,6 +90,9 @@
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="Polygon.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="doctest.h">
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>
