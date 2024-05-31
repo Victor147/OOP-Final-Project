@@ -24,7 +24,7 @@
     <ClCompile Include="Menu.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="SVGParser.cpp">
+    <ClCompile Include="SVGFile.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Property.cpp">
@@ -54,12 +54,9 @@
     <ClCompile Include="Polygon.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="FigureTest.cpp">
-      <Filter>Source Files\UnitTests</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="SVGParser.h">
+    <ClInclude Include="SVGFile.h">
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="Menu.h">
@@ -94,6 +91,9 @@
     </ClInclude>
     <ClInclude Include="doctest.h">
       <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FigureTest.h">
+      <Filter>Source Files\UnitTests</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

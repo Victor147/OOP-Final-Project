@@ -30,4 +30,8 @@ void Point::print(std::ostream& out) const {
 
 void Point::save(std::ostream& out) const {
 	out << x << "," << y;
-}	
+}
+
+double Point::distance(const Point& point) const {
+	return sqrt(pow(x - point.getX(), 2) + pow(y - point.getY(), 2));
+}

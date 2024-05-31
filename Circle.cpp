@@ -1,5 +1,6 @@
 #include "Circle.h"
 #include <iostream>
+#define PI 3.14159265359
 
 Circle::Circle() : c(0, 0), r(0) {}
 Circle::Circle(double _x, double _y, double _r, std::vector<Property>& _properties) : c(_x, _y), r(_r)
@@ -66,6 +67,14 @@ inline bool Circle::within(Figure* fig) const {
 		fig->contains(Point(c.getX(), c.getY() + r)) &&
 		fig->contains(Point(c.getX() - r, c.getY())) &&
 		fig->contains(Point(c.getX(), c.getY() - r));
+}
+
+double Circle::area() const {
+	return PI * r * r;
+}
+
+double Circle::perimeter() const {
+	return 2 * PI * r;
 }
 
 Point& Circle::getCenter() {

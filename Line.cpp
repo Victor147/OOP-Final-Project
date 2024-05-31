@@ -65,3 +65,7 @@ bool Line::contains(const Point& p) const {
 bool Line::within(Figure* fig) const {
 	return fig->contains(p1) && fig->contains(p2);
 }
+
+double Line::length() const {
+	return p1.distance(p2);
+}

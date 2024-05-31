@@ -130,7 +130,6 @@
     <ClCompile Include="Circle.cpp" />
     <ClCompile Include="Ellipse.cpp" />
     <ClCompile Include="Figure.cpp" />
-    <ClCompile Include="FigureTest.cpp" />
     <ClCompile Include="Line.cpp" />
     <ClCompile Include="Menu.cpp" />
     <ClCompile Include="oop_final_project.cpp" />
@@ -139,13 +138,14 @@
     <ClCompile Include="Polyline.cpp" />
     <ClCompile Include="Property.cpp" />
     <ClCompile Include="Rectangle.cpp" />
-    <ClCompile Include="SVGParser.cpp" />
+    <ClCompile Include="SVGFile.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Circle.h" />
     <ClInclude Include="doctest.h" />
     <ClInclude Include="Ellipse.h" />
     <ClInclude Include="Figure.h" />
+    <ClInclude Include="FigureTest.h" />
     <ClInclude Include="Line.h" />
     <ClInclude Include="Menu.h" />
     <ClInclude Include="Point.h" />
@@ -153,7 +153,7 @@
     <ClInclude Include="Polyline.h" />
     <ClInclude Include="Property.h" />
     <ClInclude Include="Rectangle.h" />
-    <ClInclude Include="SVGParser.h" />
+    <ClInclude Include="SVGFile.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

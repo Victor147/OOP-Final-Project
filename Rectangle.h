@@ -22,6 +22,9 @@ public:
 	bool contains(const Point& point) const;
 	bool within(Figure* fig) const;
 
+	double area() const;
+	double perimeter() const;
+
 	Point& getPoint();
 	double getWidth();
 	double getHeight();

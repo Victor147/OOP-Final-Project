@@ -19,4 +19,6 @@ public:
 
 	bool contains(const Point& point) const;
 	bool within(Figure* fig) const;
+
+	double length() const;
 };

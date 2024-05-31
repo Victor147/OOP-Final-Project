@@ -1,4 +1,5 @@
 #include <iostream>
+#include <cmath>
 #include "Ellipse.h"
 
 Ellipse::Ellipse() : c(0, 0), rx(0), ry(0) {}
@@ -60,4 +61,12 @@ bool Ellipse::within(Figure* figure) const {
 		figure->contains(Point(c.getX(), c.getY() + ry)) &&
 		figure->contains(Point(c.getX() - rx, c.getY())) &&
 		figure->contains(Point(c.getX(), c.getY() - ry));
+}
+
+double Ellipse::area() const {
+	return 3.14159 * rx * ry;
+}
+
+double Ellipse::perimeter() const {
+	return 2 * 3.14159 * sqrt((pow(rx-c.getX(), 2) + pow(ry-c.getY(), 2)) / 2);
 }

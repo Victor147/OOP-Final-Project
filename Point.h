@@ -20,6 +20,8 @@ public:
 	void print(std::ostream& out) const;
 	void save(std::ostream& out) const;
 
+	double distance(const Point& point) const;
+
 	friend std::istream& operator>>(std::istream& in, Point& instance)
 	{
 		in >> instance.x;

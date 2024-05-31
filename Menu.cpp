@@ -2,7 +2,7 @@
 #include <string>
 #include <sstream>
 #include <fstream>
-#include "SVGParser.h"
+#include "SVGFile.h"
 #include "Menu.h"
 
 void Menu::printHelp() {
@@ -23,7 +23,7 @@ void Menu::printHelp() {
 
 void Menu::handleInput() {
 	bool isOpened = false, specialCase = false;
-	SVGParser svg;
+	SVGFile svg;
 
 	while (true)
 	{

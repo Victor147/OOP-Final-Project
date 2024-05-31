@@ -70,6 +70,14 @@ bool Rectangle::within(Figure* fig) const {
 				fig->contains(Point(p.getX() + width, p.getY() + height));
 }
 
+double Rectangle::area() const {
+	return width * height;
+}
+
+double Rectangle::perimeter() const {
+	return 2 * (width + height);
+}
+
 Point& Rectangle::getPoint() {
 	return p;
 }
