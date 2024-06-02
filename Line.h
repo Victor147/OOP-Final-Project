@@ -17,6 +17,8 @@ public:
 
 	std::string getType() const;
 
+	Figure* clone() const;
+
 	bool contains(const Point& p) const;
 	bool within(Figure* fig) const;
 

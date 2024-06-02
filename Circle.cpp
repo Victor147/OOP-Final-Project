@@ -69,6 +69,10 @@ inline bool Circle::within(Figure* fig) const {
 		fig->contains(Point(c.getX(), c.getY() - r));
 }
 
+Figure* Circle::clone() const {
+	return new Circle(*this);
+}
+
 double Circle::area() const {
 	return PI * r * r;
 }

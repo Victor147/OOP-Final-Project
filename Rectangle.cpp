@@ -55,6 +55,10 @@ void Rectangle::save(std::ostream& out) const {
 	out << " />" << std::endl;
 }
 
+Figure* Rectangle::clone() const {
+	return new Rectangle(*this);
+}
+
 std::string Rectangle::getType() const {
 	return "rectangle";
 }

@@ -52,6 +52,10 @@ void Ellipse::readFromFile(std::istream& in) {
 	}
 }
 
+Figure* Ellipse::clone() const {
+	return new Ellipse(*this);
+}
+
 std::string Ellipse::getType() const {
 	return "ellipse";
 }

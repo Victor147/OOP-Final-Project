@@ -20,6 +20,8 @@ public:
 	bool contains(const Point& p) const;
 	bool within(Figure*) const;
 
+	Figure* clone() const;
+
 	double area() const;
 	double perimeter() const;
 

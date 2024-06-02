@@ -103,9 +103,13 @@ void Menu::handleInput() {
 				else if (command == "saveas")
 				{
 					std::string savePath;
-					ss >> savePath;
-
-					svg.saveAsFile(savePath);
+					if (ss >> savePath)
+					{
+						svg.saveAsFile(savePath);
+					}
+					else {
+						std::cout << "Invalid path!\n";
+					}
 				}
 				else if (command == "print" && isOpened)
 				{
@@ -114,16 +118,24 @@ void Menu::handleInput() {
 				else if (command == "create" && isOpened)
 				{
 					std::string figureType;
-					ss >> figureType;
+					if (ss >> figureType)
+					{
+						figureType = figureType == "rectangle" ? "rect" : figureType;
 
-					figureType = figureType == "rectangle" ? "rect" : figureType;
+						std::vector<Property> props;
 
-					std::vector<Property> props;
-
-					Figure* f = Figure::createFigure(figureType, props);
-
-					ss >> f;
-					svg.addFigure(f);
+						Figure* f = Figure::createFigure(figureType, props);
+						if (ss >> f)
+						{
+							svg.addFigure(f);
+						}
+						else {
+							std::cout << "Invalid arguments!\n";
+						}
+					}
+					else {
+						std::cout << "Figure type cannot be empty!\n";
+					}
 				}
 				else if (command == "erase" && isOpened) {
 					std::string ind;
@@ -169,14 +181,22 @@ void Menu::handleInput() {
 				else if (command == "within" && isOpened)
 				{
 					std::string type;
-					ss >> type;
+					if (ss >> type)
+					{
+						std::vector<Property> props;
 
-					std::vector<Property> props;
-
-					Figure* f = Figure::createFigure(type, props);
-					ss >> f;
-
-					svg.within(f);
+						Figure* f = Figure::createFigure(type, props);
+						if (ss >> f)
+						{
+							svg.within(f);
+						}
+						else {
+							std::cout << "Invalid arguments!\n";
+						}
+					}
+					else {
+						std::cout << "Invalid type!\n";
+					}
 				}
 			}
 		}

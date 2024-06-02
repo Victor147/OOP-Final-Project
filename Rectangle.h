@@ -17,6 +17,8 @@ public:
 	void readFromFile(std::istream& in);
 	void save(std::ostream& out) const;
 
+	Figure* clone() const;
+
 	std::string getType() const;
 
 	bool contains(const Point& point) const;

@@ -1,5 +1,3 @@
-//#define DOCTEST_CONFIG_IMPLEMENT
-//#include "doctest.h"
 #include <iostream>
 #include "Figure.h"
 #include "Menu.h"
@@ -20,7 +18,6 @@ int main(int argc, char** argv)
 
     Menu menu;
     menu.handleInput();
-    //menu.printInitialMenu();
 
     return 0;
 }

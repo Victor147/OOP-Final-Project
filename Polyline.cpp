@@ -87,6 +87,10 @@ void Polyline::save(std::ostream& out) const {
 	out << " />\n";
 }
 
+Figure* Polyline::clone() const {
+	return new Polyline(*this);
+}
+
 std::string Polyline::getType() const {
 	return "polyline";
 }

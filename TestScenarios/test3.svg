@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg">
+  <circle r="45" cx="50" cy="50" fill="red" />
+  <ellipse cx="350" cy="100" rx="220" ry="30" fill="purple" />
+  <polygon points="100,10 40,198 190,78 10,78 160,198" fill="lime" stroke="purple" />
+  <ellipse cx="330" cy="70" rx="190" ry="20" fill="lime" />
+  <line x1="45" y1="50" x2="300" y2="200" stroke="red" />
+  <ellipse cx="320" cy="45" rx="170" ry="15" fill="yellow" />
+</svg> 

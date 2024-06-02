@@ -92,6 +92,10 @@ void Polygon::save(std::ostream& out) const {
 	out << " />\n";
 }
 
+Figure* Polygon::clone() const {
+	return new Polygon(*this);
+}
+
 std::string Polygon::getType() const {
 	return "polygon";
 }

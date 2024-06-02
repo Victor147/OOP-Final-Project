@@ -1,0 +1,12 @@
+open TestScenarios\test3.svg
+print
+erase 7
+within rectangle 300 300 70 70
+within circle 0 0 300 300
+erase 6
+create rectangle 45 50 30 30 red
+print
+translate vertical=10 horizontal=5 6
+print
+save
+exit

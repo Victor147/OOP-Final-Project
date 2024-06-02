@@ -219,6 +219,18 @@ void SVGFile::within(Figure* f) {
 void SVGFile::saveAsFile(std::string& path) {
 	std::ofstream file(path);
 	save(file);
+
+	std::string name;
+
+	if (path.find("\\") == std::string::npos)
+	{
+		name = path;
+	}
+	else {
+		name = path.substr(path.find_last_of("\\") + 1);
+	}
+
+	std::cout << "Successfully saved the changes to " << name << "!\n";
 }
 
 SVGFile::~SVGFile() {

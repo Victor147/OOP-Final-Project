@@ -58,6 +58,10 @@ std::string Line::getType() const {
 	return "line";
 }
 
+Figure* Line::clone() const {
+	return new Line(*this);
+}
+
 bool Line::contains(const Point& p) const {
 	return false;
 }

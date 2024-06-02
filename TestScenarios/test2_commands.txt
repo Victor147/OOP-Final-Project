@@ -1,0 +1,18 @@
+open TestScenarios\test2.svg
+print
+create rectangle 20 20 50 50 red
+create rectangle 0 0 10 10 blue black
+create circle 30 30 5 green
+create circle 50 50 10 pink black
+create line 0 0 100 100 black
+create polygon 30 10 60 90 40 120 brown
+create polyline 40 70 60 155 400 265 grey
+create ellipse 100 70 60 50 pink
+print
+translate vertical=10 horizontal=15
+print
+saveas TestScenarios\test2_saveas.svg
+close
+n
+exit
+   

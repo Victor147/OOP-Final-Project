@@ -30,13 +30,3 @@ public:
 		return in;
 	};
 };
-
-//std::istream& operator>>(std::istream& in, Point& instance) {
-//	float x = 0, y = 0;
-//	in >> x;
-//	in >> y;
-//
-//	instance.setX(x);
-//	instance.setY(y);
-//	return in;
-//};

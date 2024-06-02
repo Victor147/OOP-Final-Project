@@ -14,11 +14,15 @@ public:
 	virtual void readFromFile(std::istream& in) = 0;
 	virtual void save(std::ostream& out) const = 0;
 	virtual std::string getType() const = 0;
+	virtual Figure* clone() const = 0;
 
 	static Figure* createFigure(std::string& type, std::vector<Property>& properties);
 
 	friend std::istream& operator>>(std::istream& in, Figure* fig) {
-		fig->readFromFile(in);
+		if (fig != nullptr)
+		{
+			fig->readFromFile(in);
+		}
 		return in;
 	};
 };
